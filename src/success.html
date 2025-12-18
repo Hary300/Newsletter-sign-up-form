@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link href="./output.css" rel="stylesheet" />
+
+    <title>
+      Frontend Mentor | Newsletter sign-up form with success message
+    </title>
+  </head>
+
+  <body
+    class="flex flex-col justify-center items-center h-screen lg:bg-[#36384D] gap-4 py-10"
+  >
+    <div
+      class="flex flex-col gap-8 p-8 lg:p-10 bg-white rounded-3xl max-w-100 lg:max-w-120 w-full"
+    >
+      <img
+        src="/assets/images/icon-success.svg"
+        alt="succcess icon"
+        width="64"
+        height="64"
+      />
+      <h1 class="text-5xl font-bold">Thanks for subscribing!</h1>
+      <p>
+        A confirmation email has been sent to
+        <strong id="email-output"></strong>. Please open it and click the button
+        inside to confirm your subscription.
+      </p>
+
+      <a
+        href="./index.html"
+        class="bg-[#232742] text-white rounded-lg p-4 text-lg text-center hover:bg-[#4C51BF] active:scale-95 transition-all mt-50 lg:mt-0"
+      >
+        Dismiss message
+      </a>
+    </div>
+
+    <footer class="attribution text-[#232742] lg:text-white text-center">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io?ref=challenge"
+        target="_blank"
+        class="text-[#FF5967]"
+        >Frontend Mentor</a
+      >. Coded by
+      <a href="https://github.com/Hary300" class="text-[#FF5967]">Hary300</a>.
+    </footer>
+  </body>
+
+  <script>
+    const email = localStorage.getItem('email');
+
+    document.getElementById('email-output').textContent = email;
+    localStorage.removeItem('email');
+
+    if (!email) {
+      window.location.href = 'index.html';
+    }
+  </script>
+</html>

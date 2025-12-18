@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link href="./output.css" rel="stylesheet" />
+
+    <title>
+      Frontend Mentor | Newsletter sign-up form with success message
+    </title>
+  </head>
+
+  <body
+    class="flex flex-col justify-center items-center h-screen bg-[#36384D] gap-4"
+  >
+    <div
+      class="flex flex-col lg:flex-row gap-8 lg:p-6 bg-white rounded-lg max-w-100 lg:max-w-250 w-full"
+    >
+      <div>
+        <img
+          src="../assets/images/illustration-sign-up-mobile.svg"
+          alt="illustration-sign-up-mobile"
+          class="object-cover block lg:hidden w-full"
+        />
+      </div>
+
+      <form
+        id="form"
+        class="flex flex-col space-y-4 p-8 justify-center"
+        novalidate
+      >
+        <h1 class="text-5xl font-bold">Stay updated!</h1>
+        <p class="text-md">
+          Join 60,000+ product managers receiving monthly updates on:
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2">
+            <img src="../assets/images/icon-list.svg" alt="" />
+            <span>Product discovery and building what matters</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <img src="../assets/images/icon-list.svg" alt="" />
+            <span>Measuring to ensure updates are a success</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <img src="../assets/images/icon-list.svg" alt="" />
+            <span>And much more!</span>
+          </li>
+        </ul>
+        <div class="flex justify-between">
+          <label for="email">Email address</label
+          ><span id="email-error" class="text-red-500"></span>
+        </div>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="email@company.com"
+          class="p-4 rounded-lg border border-gray-400"
+        />
+
+        <button
+          class="bg-[#232742] text-white rounded-lg p-6 hover:bg-[#4C51BF] active:bg-linear-to-r active:scale-95 transition-all duration-200 active:from-[#FE6353] active:to-[#FF576B] active:shadow-[0_0_30px_10px_rgba(255,87,108,0.5)]"
+        >
+          Subscribe to monthly newsletter
+        </button>
+      </form>
+
+      <div>
+        <img
+          src="../assets/images/illustration-sign-up-desktop.svg"
+          alt="illustration-sign-up-desktop"
+          class="object-cover hidden lg:block"
+        />
+      </div>
+    </div>
+
+    <footer class="attribution text-white text-center">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io?ref=challenge"
+        target="_blank"
+        class="text-[#FF5967]"
+        >Frontend Mentor</a
+      >. Coded by
+      <a href="https://github.com/Hary300" class="text-[#FF5967]">Hary300</a>.
+    </footer>
+  </body>
+
+  <script>
+    const form = document.getElementById('form');
+    const emailInput = document.getElementById('email');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const data = Object.fromEntries(new FormData(form));
+      console.log(data);
+
+      const errors = {};
+      if (!data.email) {
+        errors.email = 'Email is required';
+      } else if (!data.email.includes('@')) {
+        errors.email = 'Email is invalid';
+      }
+
+      document.getElementById('email-error').textContent = errors.email || '';
+
+      if (errors.email) {
+        emailInput.classList.remove('border-gray-400');
+        emailInput.classList.add('border-red-500');
+      } else {
+        emailInput.classList.remove('border-red-500');
+        emailInput.classList.add('border-gray-400');
+      }
+
+      const isValid = Object.keys(errors).length === 0;
+      if (isValid) {
+        localStorage.setItem('email', data.email);
+        window.location.href = '/src/success.html';
+      }
+    });
+  </script>
+</html>
